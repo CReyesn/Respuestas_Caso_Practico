@@ -58,24 +58,24 @@ tiempo de espera para el cliente.
 
 3.- 
 
-public void getAllData() {
-  // le asignamos a una lista de transacciones la informacion obtenida desde la base de datos de la tabla transacción
-  List<Transaccion> ltsTransaccion=transaccionRepository.findAll();
+	public void getAllData() {
+	  // le asignamos a una lista de transacciones la informacion obtenida desde la base de datos de la tabla transacción
+	  List<Transaccion> ltsTransaccion=transaccionRepository.findAll();
 
-  // le asignamos a una lista de transacciones la informacion obtenida desde la base de datos de la tabla transacción
-  List<Item> ltsItem=itemRepository.findAll();
-    
-     // recorremos la lista de item
-     for (List<Item> i : ltsItem) {
-    
-	// recorre la lista de transaccion  	
-	for (List<Transaccion> t : ltsTransaccion) {  
-      
-           // condicion: si transaccion_id=id y created de la tabla item es mayor a 1 dia de created de la tabla transaccion
-           if(i.getTransaccionId()==t.getId() && i.getCreated()>t.getCreated()+(1000 * 60 * 60 * 24)) { 
+	  // le asignamos a una lista de transacciones la informacion obtenida desde la base de datos de la tabla transacción
+	  List<Item> ltsItem=itemRepository.findAll();
 
-        	logger.trace("Cretead of list item exceed over 1 day, item id:"+i.getId()+" transacion id:"+t.getId());
-			}
-		}			
+	     // recorremos la lista de item
+	     for (List<Item> i : ltsItem) {
+
+		// recorre la lista de transaccion  	
+		for (List<Transaccion> t : ltsTransaccion) {  
+
+		   // condicion: si transaccion_id=id y created de la tabla item es mayor a 1 dia de created de la tabla transaccion
+		   if(i.getTransaccionId()==t.getId() && i.getCreated()>t.getCreated()+(1000 * 60 * 60 * 24)) { 
+
+			logger.trace("Cretead of list item exceed over 1 day, item id:"+i.getId()+" transacion id:"+t.getId());
+				}
+			}			
+		}
 	}
-}
